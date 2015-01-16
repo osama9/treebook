@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :statuses
+  resources :statuses #, path: 'updates'
   get 'feed', to: 'statuses#index', as: :feed
 
   root to: 'statuses#index'
