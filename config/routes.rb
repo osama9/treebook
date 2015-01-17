@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+
   devise_for :users
   resources :statuses #, path: 'updates'
   get 'feed', to: 'statuses#index', as: :feed
