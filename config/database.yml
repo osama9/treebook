@@ -6,12 +6,15 @@
 #
 default: &default
   adapter: postgresql
+
   pool: 5
   timeout: 5000
 
 development:
   adapter: postgresql
   database: treebook-dev
+  username: postgres
+  password: '25132513'
   pool: 5
   timeout: 5000
 
@@ -21,11 +24,15 @@ development:
 test:
   adapter: postgresql
   database: treebook-test
+  username: postgres
+  password: '25132513'
   pool: 5
   timeout: 500
 
 production:
   adapter: postgresql
   database: treebook
+  username: postgres
+  password: '25132513'
   pool: 5
   timeout: 5000
