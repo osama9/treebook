@@ -13,8 +13,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'state_machine'
+
 group :test do
 	gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :production do

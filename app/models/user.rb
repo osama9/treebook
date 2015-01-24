@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
 
   has_many :statuses
   has_many :user_friendships
-  has_many :friends, through: :user_friendships   # the name of association (prulalized) in UserFreindsip model
+  has_many :friends, -> { where user_friendships: 
+                        {state: "accepted"}}, through: :user_friendships   # the name of association (prulalized) in UserFreindsip model
+  has_many :pending_user_friendships, -> { where user_friendships:{state: "pending"}}, class_name: 'UserFriendship',
+                                     foreign_key: :user_id
+
+  has_many :pending_friends, :through => :pending_user_friendships, :source => :friend
+
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -21,6 +27,10 @@ class User < ActiveRecord::Base
 
   def full_name
   	first_name + " " + last_name
+  end
+
+  def to_param
+    profile_name
   end
 
   def gravatar_url

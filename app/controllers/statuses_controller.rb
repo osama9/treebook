@@ -42,8 +42,7 @@ class StatusesController < ApplicationController
   # PATCH/PUT /statuses/1.json
   def update
       @status = current_user.statuses.find(params[:id])
-      status_params[:content] = @status.content
-      status_params[:user_id] = current_user.id
+      status_params = {content: @status.content, user_id: @status.user_id}
     respond_to do |format|
       if @status.update(status_params)
         format.html { redirect_to @status, notice: 'Status was successfully updated.' }
@@ -73,6 +72,6 @@ class StatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
-      params.require(:status).permit(:user_id, :content)
+      params.require(:status,).permit(:user_id, :content)
     end
 end

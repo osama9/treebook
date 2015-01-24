@@ -67,7 +67,7 @@ class StatusesControllerTest < ActionController::TestCase
 
   test "should update status for the current user when logged in" do
     sign_in users(:osama)
-    patch :update, id: @status, status: { content: @status.content, user_id: users(:shooq) }
+    patch :update, id: @status, status: { content: @status.content, user_id: users(:osama).id }
     assert_redirected_to status_path(assigns(:status))
     assert_equal assigns(:status).user_id, users(:osama).id
   end
